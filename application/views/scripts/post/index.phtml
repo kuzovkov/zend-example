@@ -1,0 +1,30 @@
+<?php
+$this->title = "Статьи";
+$this->headTitle($this->title);
+?>
+<p><a href="<?php echo $this->url(array('controller'=>'post',
+ 'action'=>'add'));?>">Добавить новую</a></p>
+<table>
+<tr>
+ <th>Title</th>
+ <th>Text</th>
+ <th>Image</th>
+ <th>Updated</th>
+    <th>...</th>
+</tr>
+<?php foreach($this->posts as $post) : ?>
+<tr>
+    <td><?php echo $this->escape($post->title);?></td>
+    <td><?php echo $post->body;?></td>
+    <td><img src="upload/<?php echo $this->escape($post->img);?>" width="100" height="100"/></td>
+    <td><?php echo $this->escape($post->updated_at);?></td>
+    <td>
+         <a href="<?php echo $this->url(array('controller'=>'post',
+         'action'=>'edit', 'id'=>$post->id));?>">Edit</a>
+
+         <a href="<?php echo $this->url(array('controller'=>'post',
+         'action'=>'delete', 'id'=>$post->id));?>">Delete</a>
+     </td>
+</tr>
+<?php endforeach; ?>
+</table>
